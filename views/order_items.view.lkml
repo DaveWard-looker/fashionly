@@ -110,6 +110,36 @@ view: order_items {
     sql: ${TABLE}.user_id ;;
   }
 
+  dimension: overview_button {
+    type: string
+    sql: ${id} ;;
+    label: "Overview Button"
+    html: <div style="margin: auto; ">
+
+<a style="
+  color: #fff;
+    background-color: #4285F4;
+    border-color: #4285F4;
+    float: left;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    padding: 10px;
+    margin: 5px;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 5px;"
+    href="/dashboards-next/5?Brand={{_filters['products.brand']}}">
+
+    Refresh Data
+
+</a>
+</div>
+;;
+  }
+
   measure: count {
     label: "Count of Order Items"
     type: count
