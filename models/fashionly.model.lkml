@@ -1,7 +1,7 @@
 connection: "the_look"
 
 # include all the views
-include: "/views/**/*.view"
+include: "/views/**/*"
 
 datagroup: order_items_datagroup {
   sql_trigger: SELECT max(id) FROM order_items ;;
