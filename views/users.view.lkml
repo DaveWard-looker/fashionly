@@ -75,6 +75,10 @@ view: users {
   dimension: customer_name {
     type: string
     sql: ${first_name}||' '||${last_name} ;;
+    link: {
+      label: "Email {{value}}"
+      url: "mailto:{{email._value}}?subject=Mr {{ last_name._value }} this offer is just for you&body=Hi {{ first_name._value }},\Thanks for signing up,\  Lets discuss some offers"
+    }
   }
 
   dimension: latitude {

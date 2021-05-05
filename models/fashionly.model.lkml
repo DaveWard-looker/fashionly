@@ -12,7 +12,11 @@ persist_with: order_items_datagroup
 
 explore: events {
   join: users {
-    fields: [-users.delivery_distance,-users.delivery_distance_tier,-users.average_delivery_distance]
+    fields: [
+      -users.delivery_distance,
+      -users.delivery_distance_tier,
+      -users.average_delivery_distance
+      ]
     type: left_outer
     sql_on: ${events.user_id} = ${users.id} ;;
     relationship: many_to_one
@@ -60,6 +64,11 @@ explore: order_items {
   join: distribution_centers {
     type: left_outer
     sql_on: ${inventory_items.distribution_center_id} = ${distribution_centers.id} ;;
+    relationship: many_to_one
+  }
+  join: user_orders_fact {
+    type: left_outer
+    sql_on: ${order_items.user_id} = ${user_orders_fact.id} ;;
     relationship: many_to_one
   }
 }
