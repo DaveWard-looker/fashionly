@@ -23,6 +23,12 @@ explore: events {
   }
 }
 
+explore: my_ecplore {
+  from: order_items
+}
+
+explore: fact_order {}
+
 explore: inventory_items {
   join: products {
     fields: [-products.profit_per_customer]

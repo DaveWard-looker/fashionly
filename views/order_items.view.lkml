@@ -114,30 +114,30 @@ view: order_items {
     type: string
     sql: ${id} ;;
     label: "Overview Button"
-    html: <div style="margin: auto; ">
+#     html: <div style="margin: auto; ">
 
-<a style="
-  color: #fff;
-    background-color: #4285F4;
-    border-color: #4285F4;
-    float: left;
-    font-weight: 400;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    user-select: none;
-    padding: 10px;
-    margin: 5px;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: 5px;"
-    href="/dashboards-next/5?Brand={{_filters['products.brand']}}">
+# <a style="
+#   color: #fff;
+#     background-color: #4285F4;
+#     border-color: #4285F4;
+#     float: left;
+#     font-weight: 400;
+#     text-align: center;
+#     vertical-align: middle;
+#     cursor: pointer;
+#     user-select: none;
+#     padding: 10px;
+#     margin: 5px;
+#     font-size: 1rem;
+#     line-height: 1.5;
+#     border-radius: 5px;"
+#     href="/dashboards-next/5?Brand={{_filters['products.brand']}}">
 
-    Refresh Data
+#     Refresh Data
 
-</a>
-</div>
-;;
+# </a>
+# </div>
+# ;;
   }
 
   measure: count {
