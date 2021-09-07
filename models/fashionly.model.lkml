@@ -1,6 +1,5 @@
 connection: "bigquery_personal_instance"
 
-explore: dresses {}
 
 # include all the views
 include: "/views/**/*"
@@ -22,7 +21,6 @@ access_grant: private_data {
   user_attribute: private_data_access
 }
 
-explore: fact_order {}
 
 explore: events {
   join: users {
@@ -32,6 +30,8 @@ explore: events {
     relationship: many_to_one
   }
 }
+
+
 
 explore: inventory_items {
   join: products {
@@ -49,10 +49,10 @@ explore: inventory_items {
 }
 
 explore: order_items {
-  access_filter: {
-    field: users.country
-    user_attribute: manager_country
-  }
+  # access_filter: {
+  #   field: users.country
+  #   user_attribute: manager_country
+  # }
   join: users {
     type: left_outer
     sql_on: ${order_items.user_id} = ${users.id} ;;
@@ -98,21 +98,6 @@ explore: products {
 }
 
 
-explore: orders_by_gender {
-  from: order_items
-  join: male_users {
-    from: users
-    sql_on: ${orders_by_gender.user_id} = ${male_users.id}
-    and ${male_users.gender} = 'Male';;
-    relationship: many_to_one
-  }
-  join: female_users {
-    from: users
-    sql_on: ${orders_by_gender.user_id} = ${male_users.id}
-    and ${male_users.gender} = 'Female';;
-    relationship: many_to_one
-  }
-}
 
 
 
@@ -123,28 +108,3 @@ access_grant: brand_client_flag {
 
 
 # aggregate awareness code
-
-# Place in `fashionly` model
-explore: +order_items {
-  aggregate_table: rollup__shipped_date {
-    query: {
-      dimensions: [
-        # "users.country" is automatically filtered on in an access_filter.
-        # Uncomment to allow all possible filters to work with aggregate awareness.
-        # users.country,
-        shipped_date
-      ]
-      measures: [total_sale_price]
-      filters: [
-        # "users.country" is automatically filtered on in an access_filter in this query.
-        # Remove this filter to allow all possible filters to work with aggregate awareness.
-        users.country: "USA",
-        order_items.created_date: "14 days"
-      ]
-    }
-
-    materialization: {
-      datagroup_trigger: order_items_datagroup
-    }
-  }
-}

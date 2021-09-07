@@ -110,23 +110,23 @@ view: order_items {
     sql: ${TABLE}.user_id ;;
   }
 
-  # measure: nav_bar {
-  #   type: string
-  #   sql: 1 ;;
-  #   html:
-  #   <nav style="font-size: 18px; padding: 5px 10px 0 10px; height: 60px">
-  #     <a style="padding: 5px; border-top: solid 1px #4285F4; border-left: solid 1px #4285F4; border-right: solid 1px #4285F4; border-radius: 5px 5px 0 0; float: left; line-height: 40px; font-weight: bold;" href="/dashboards-next/1171?Brand={{ _filters['my_view.field_name'] | url_encode }}">
-  #   Home</a>
-  #     <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards-next/972?Brand={{ _filters['my_view.field_name'] | url_encode }}">Sportsbook</a>
-  #   </nav>
-  #       ;;
-  # }
 
-#   dimension: overview_button {
-#     type: string
-#     sql: ${id} ;;
-#     label: "Overview Button"
-#     html: <div style="margin: auto; ">
+# <a style="
+#   color: #fff;
+#     background-color: #4285F4;
+#     border-color: #4285F4;
+#     float: left;
+#     font-weight: 400;
+#     text-align: center;
+#     vertical-align: middle;
+#     cursor: pointer;
+#     user-select: none;
+#     padding: 10px;
+#     margin: 5px;
+#     font-size: 1rem;
+#     line-height: 1.5;
+#     border-radius: 5px;"
+#     href="/dashboards-next/5?Brand={{_filters['products.brand']}}">
 
 # <a style="
 #   color: #fff;
@@ -144,6 +144,8 @@ view: order_items {
 #     line-height: 1.5;
 #     border-radius: 5px;"
 #     href="/embed/dashboards-next/5?Brand={{_filters['products.brand']}}">
+=======
+#     Refresh Data
 
 #     Refresh Data
 
@@ -222,6 +224,8 @@ view: order_items {
   #   </div>
   #     ;;
   # }
+
+
 
   measure: count {
     label: "Count of Order Items"
