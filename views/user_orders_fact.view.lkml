@@ -10,8 +10,12 @@ view: user_orders_fact {
       LEFT JOIN `daveward-ps-dev.thelook.order_items` orders
       on users.id = orders.user_id
       group by 1,2
-      LIMIT 10
        ;;
+  }
+
+  filter: user_id {
+    type: number
+    suggest_dimension: users.id
   }
 
   measure: count {
@@ -21,7 +25,7 @@ view: user_orders_fact {
 
   dimension: id {
     primary_key: yes
-    hidden: yes
+    hidden: no
     type: number
     sql: ${TABLE}.id ;;
   }

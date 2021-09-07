@@ -51,6 +51,7 @@ view: users {
   }
 
   dimension: email {
+    required_access_grants: [private_data]
     type: string
     sql: ${TABLE}.email ;;
   }
@@ -67,6 +68,7 @@ view: users {
   }
 
   dimension: last_name {
+
     hidden: yes
     type: string
     sql: ${TABLE}.last_name ;;
@@ -115,26 +117,26 @@ view: users {
     label: "User Location"
   }
 
-  dimension: delivery_distance {
-    # hidden: yes
-    type: distance
-    start_location_field: distribution_centers.location
-    end_location_field: users.location
-    units: kilometers
-  }
+  # dimension: delivery_distance {
+  #   # hidden: yes
+  #   type: distance
+  #   start_location_field: distribution_centers.location
+  #   end_location_field: users.location
+  #   units: kilometers
+  # }
 
-  dimension: delivery_distance_tier {
-    type: tier
-    tiers: [50,500,1000,2000,3000,4000,5000]
-    sql: ${delivery_distance} ;;
-    style: integer
-  }
+  # dimension: delivery_distance_tier {
+  #   type: tier
+  #   tiers: [50,500,1000,2000,3000,4000,5000]
+  #   sql: ${delivery_distance} ;;
+  #   style: integer
+  # }
 
-  measure: average_delivery_distance {
-    type: average
-    sql: ${delivery_distance} ;;
-    value_format_name: decimal_0
-  }
+  # measure: average_delivery_distance {
+  #   type: average
+  #   sql: ${delivery_distance} ;;
+  #   value_format_name: decimal_0
+  # }
 
 
   measure: count {
