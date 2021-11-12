@@ -51,7 +51,6 @@ view: users {
   }
 
   dimension: email {
-    required_access_grants: [private_data]
     type: string
     sql: ${TABLE}.email ;;
   }

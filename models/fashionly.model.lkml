@@ -1,4 +1,4 @@
-connection: "bigquery_personal_instance"
+connection: "@{connection_name}"
 
 
 # include all the views
@@ -16,10 +16,6 @@ datagroup: inventory_items_datagroup {
 
 persist_with: order_items_datagroup
 
-access_grant: private_data {
-  allowed_values: ["Yes"]
-  user_attribute: private_data_access
-}
 
 
 explore: events {
@@ -48,40 +44,40 @@ explore: inventory_items {
   }
 }
 
-explore: order_items {
-  # access_filter: {
-  #   field: users.country
-  #   user_attribute: manager_country
-  # }
-  join: users {
-    type: left_outer
-    sql_on: ${order_items.user_id} = ${users.id} ;;
-    relationship: many_to_one
-  }
+# explore: order_items {
+#   # access_filter: {
+#   #   field: users.country
+#   #   user_attribute: manager_country
+#   # }
+#   join: users {
+#     type: left_outer
+#     sql_on: ${order_items.user_id} = ${users.id} ;;
+#     relationship: many_to_one
+#   }
 
-  join: inventory_items {
-    type: left_outer
-    sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
-    relationship: many_to_one
-  }
+#   join: inventory_items {
+#     type: left_outer
+#     sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
+#     relationship: many_to_one
+#   }
 
-  join: products {
-    type: left_outer
-    sql_on: ${inventory_items.product_id} = ${products.id} ;;
-    relationship: many_to_one
-  }
+#   join: products {
+#     type: left_outer
+#     sql_on: ${inventory_items.product_id} = ${products.id} ;;
+#     relationship: many_to_one
+#   }
 
-  join: distribution_centers {
-    type: left_outer
-    sql_on: ${inventory_items.distribution_center_id} = ${distribution_centers.id} ;;
-    relationship: many_to_one
-  }
-  join: user_orders_fact {
-    type: left_outer
-    sql_on: ${order_items.user_id} = ${user_orders_fact.id} ;;
-    relationship: many_to_one
-  }
-}
+#   join: distribution_centers {
+#     type: left_outer
+#     sql_on: ${inventory_items.distribution_center_id} = ${distribution_centers.id} ;;
+#     relationship: many_to_one
+#   }
+#   join: user_orders_fact {
+#     type: left_outer
+#     sql_on: ${order_items.user_id} = ${user_orders_fact.id} ;;
+#     relationship: many_to_one
+#   }
+# }
 
 explore: products {
   access_filter: {
