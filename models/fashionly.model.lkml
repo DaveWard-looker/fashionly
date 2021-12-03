@@ -17,6 +17,13 @@ datagroup: inventory_items_datagroup {
 persist_with: order_items_datagroup
 
 
+explore: order_items {
+  join: dt_client {
+    sql_on: ${order_items.user_id} = ${dt_client.user_id} ;;
+    relationship: many_to_one
+  }
+}
+
 
 explore: events {
   join: users {
