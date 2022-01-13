@@ -16,6 +16,8 @@ view: order_items {
       raw,
       time,
       date,
+      day_of_week,
+      day_of_week_index,
       week,
       month,
       quarter,
@@ -23,6 +25,30 @@ view: order_items {
     ]
     sql: ${TABLE}.created_at ;;
   }
+
+
+  dimension: monday {
+    label: "Monday"
+    type: string
+    sql: CASE WHEN ${created_day_of_week_index} = 0 then 'Monday' ELSE NULL END ;;
+  }
+
+  dimension: day_of_week {
+    label: "Day of Week"
+    type: string
+    sql:
+    CASE
+    when ${created_day_of_week_index} = 0 THEN '{{ _localization['Monday']}}'
+    when ${created_day_of_week_index} = 1 THEN '{{ _localization['Tuesday']}}'
+    when ${created_day_of_week_index} = 2 THEN '{{ _localization['Wednesday']}}'
+    when ${created_day_of_week_index} = 3 THEN '{{ _localization['Thursday']}}'
+    when ${created_day_of_week_index} = 4 THEN '{{ _localization['Friday']}}'
+    when ${created_day_of_week_index} = 5 THEN '{{ _localization['Saturday']}}'
+    when ${created_day_of_week_index} = 6 THEN '{{ _localization['Sunday']}}'
+    ELSE 'OTHER' END
+    ;;
+  }
+
 
   dimension_group: delivered {
     type: time
@@ -256,6 +282,24 @@ view: order_items {
     type: number
     sql: 1.00*${count_of_returns}/nullif(${count},0) ;;
     value_format_name: percent_2
+    html:
+    {% if value > 0.5 %}
+    {% assign indicator = "green,▲" | split: ',' %}
+    {% elsif value < 0.5 %}
+    {% assign indicator = "red,▼" | split: ',' %}
+    {% else %}
+    {% assign indicator = "black,▬"] | split: ',' %}
+  {% endif %}
+
+  <font color="{{indicator[0]}}">
+
+  {% if value == 99999.12345 %} &infin
+
+  {% else %}{{rendered_value}}
+
+  {% endif %} {{indicator[1]}}
+
+  </font> ;;
   }
 
   measure: cancellation_rate {

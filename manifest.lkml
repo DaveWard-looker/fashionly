@@ -11,3 +11,9 @@ constant: connection_name {
   value: "bigquery_personal_instance"
   export: override_required
 }
+
+
+localization_settings: {
+  default_locale: en
+  localization_level: permissive
+}

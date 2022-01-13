@@ -10,6 +10,7 @@ view: system_fields {
     timeframes: [
       raw,
       date,
+      day_of_week,
       week,
       month,
       year

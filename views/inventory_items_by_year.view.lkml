@@ -16,7 +16,7 @@ view: inventory_items_by_year {
       group by
       1,2,3,4,5,6,7,8,9
        ;;
-      datagroup_trigger: inventory_items_datagroup
+      # datagroup_trigger: inventory_items_datagroup
 
   }
 
