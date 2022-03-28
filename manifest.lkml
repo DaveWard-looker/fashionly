@@ -4,12 +4,16 @@ project_name: "fashionly"
 # # on this instance with include: statements
 #
 # local_dependency: {
-#   project: "name_of_other_project"
+#   project: "elections"
 # }
 
 constant: connection_name {
   value: "bigquery_personal_instance"
   export: override_required
+}
+
+constant: map_api_key {
+  value: "laijhefpa7p976d"
 }
 
 

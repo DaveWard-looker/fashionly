@@ -8,7 +8,9 @@ view: dt_client {
         number_of_items_ordered,
         sum(sale_price) as client_purchase_amount
       from thelook.order_items oi
-      where status = 'Complete'
+      where
+      -- if dev -- status = 'Complete'
+      -- if prod -- status = 'Cancelled'
       and {% condition order_items.created_date %} oi.created_at {% endcondition %}
       group by 1
        ;;

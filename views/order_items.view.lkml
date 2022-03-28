@@ -1,4 +1,5 @@
 include: "system_fields.view"
+include: "/value_formats.explore.lkml"
 view: order_items {
   extends: [system_fields]
   sql_table_name: `thelook.order_items`
@@ -265,7 +266,7 @@ view: order_items {
   measure: total_sale_price {
     type: sum
     sql: ${sale_price} ;;
-    value_format_name: usd
+    value_format_name: large_number
   }
 
   measure: count_of_returns {
@@ -282,30 +283,29 @@ view: order_items {
     type: number
     sql: 1.00*${count_of_returns}/nullif(${count},0) ;;
     value_format_name: percent_2
-    html:
-    {% if value > 0.5 %}
-    {% assign indicator = "green,▲" | split: ',' %}
-    {% elsif value < 0.5 %}
-    {% assign indicator = "red,▼" | split: ',' %}
-    {% else %}
-    {% assign indicator = "black,▬"] | split: ',' %}
-  {% endif %}
+  #   html:
+  #   {% if value > 0.5 %}
+  #   {% assign indicator = "green,▲" | split: ',' %}
+  #   {% elsif value < 0.5 %}
+  #   {% assign indicator = "red,▼" | split: ',' %}
+  #   {% else %}
+  #   {% assign indicator = "black,▬"] | split: ',' %}
+  # {% endif %}
 
-  <font color="{{indicator[0]}}">
+  # <font color="{{indicator[0]}}">
 
-  {% if value == 99999.12345 %} &infin
+  # {% if value == 99999.12345 %} &infin
 
-  {% else %}{{rendered_value}}
+  # {% else %}{{rendered_value}}
 
-  {% endif %} {{indicator[1]}}
+  # {% endif %} {{indicator[1]}}
 
-  </font> ;;
+  # </font> ;;
   }
 
   measure: cancellation_rate {
     type: number
     sql: 1.00*${count_of_cancellations}/nullif(${count},0) ;;
-    value_format_name: percent_2
   }
 
   measure: average_shipping_days {

@@ -5,14 +5,18 @@ view: inventory_items {
   derived_table: {
     sql:  SELECT * FROM
  {% if created_week._in_query %}
- ${inventory_items_by_week.SQL_TABLE_NAME}
+ ${inventory_items_by_week.SQL_TABLE_NAME} i
  {% elsif created_month._in_query %}
- ${inventory_items_by_month.SQL_TABLE_NAME}
+ ${inventory_items_by_month.SQL_TABLE_NAME} i
  {% elsif created_year._in_query %}
- ${inventory_items_by_year.SQL_TABLE_NAME}
+ ${inventory_items_by_year.SQL_TABLE_NAME} i
  {% else %}
- thelook.inventory_items
+ thelook.inventory_items i
  {% endif %}
+where
+
+{% condition product_category  %} i.product_category {% endcondition %}
+
     ;;
     }
   drill_fields: [id]
