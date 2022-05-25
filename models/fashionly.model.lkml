@@ -57,10 +57,10 @@ explore: events_ireland {
 
 
 explore: inventory_items {
+
   hidden: yes
   persist_with: inventory_items_datagroup
   join: products {
-    fields: []
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
     relationship: many_to_one
@@ -114,7 +114,6 @@ explore: products {
     field: category
     user_attribute: sales_department
   }
-  fields: [ALL_FIELDS*,-products.profit_per_customer]
   join: distribution_centers {
 
     type: left_outer
