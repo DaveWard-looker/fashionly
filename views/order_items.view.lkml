@@ -317,7 +317,6 @@ view: order_items {
   measure: average_picking_hours {
     type: average
     sql: ${hours_picked} ;;
-    value_format_name: decimal_2
   }
 
 }
