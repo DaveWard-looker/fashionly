@@ -107,12 +107,6 @@ view: events {
     sql: ${TABLE}.zip ;;
   }
 
-  measure: count_of_zip_codes {
-    type: count_distinct
-    sql: ${zip} ;;
-    value_format_name: decimal_0
-  }
-
   measure: count {
     type: count
     drill_fields: [id, users.last_name, users.id, users.first_name]
