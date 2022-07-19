@@ -152,4 +152,9 @@ view: users {
     type: count
     filters: [gender: "Male"]
   }
+
+  measure: average_Age {
+    type: average
+    sql: ${age} ;;
+  }
 }
