@@ -111,4 +111,9 @@ view: events {
     type: count
     drill_fields: [id, users.last_name, users.id, users.first_name]
   }
+
+  measure: number_of_browsers {
+    type: count_distinct
+    sql: ${browser} ;;
+  }
 }
