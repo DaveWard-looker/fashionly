@@ -132,4 +132,10 @@ where
     sql: ${product_retail_price} ;;
     value_format_name: usd
   }
+
+  measure: average_product_retail_price {
+    type: average
+    sql: ${product_retail_price} ;;
+    value_format_name: usd
+  }
 }
