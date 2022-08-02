@@ -110,10 +110,7 @@ explore: inventory_items {
 # }
 
 explore: products {
-  access_filter: {
-    field: category
-    user_attribute: sales_department
-  }
+
   join: distribution_centers {
 
     type: left_outer
@@ -138,10 +135,6 @@ explore: inventory_items_marketing {
 
 
 
-access_grant: brand_client_flag {
-  user_attribute: is_brand_client
-  allowed_values: ["yes"]
-}
 
 
 # aggregate awareness code

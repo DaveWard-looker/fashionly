@@ -1,5 +1,5 @@
 # Define the database connection to be used for this model.
-connection: "the_look"
+connection: "bigquery_personal_instance"
 
 # include all the views
 include: "/views/**/*.view"
