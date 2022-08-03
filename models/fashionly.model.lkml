@@ -1,5 +1,6 @@
 connection: "@{connection_name}"
 include: "/value_formats.explore.lkml"
+include: "/dashboards/inventory_items.dashboard.lookml"
 
 # include all the views
 include: "/views/**/*"
@@ -14,7 +15,7 @@ datagroup: no_cache {
 }
 
 datagroup: inventory_items_datagroup {
-  sql_trigger: select max(id) from inventory_items ;;
+  sql_trigger: select current_date() ;;
   max_cache_age: "24 hours"
 }
 

@@ -94,6 +94,61 @@ where
     hidden: yes
   }
 
+  parameter: sold_at_timeframe {
+    type: unquoted
+    allowed_value: {
+      label: "By Day"
+      value: "day"
+    }
+    allowed_value: {
+      label: "By Week"
+      value: "week"
+    }
+    allowed_value: {
+      label: "By Month"
+      value: "month"
+    }
+    allowed_value: {
+      label: "By Year"
+      value: "year"
+    }
+  }
+
+  dimension: timeframe {
+    label_from_parameter: sold_at_timeframe
+    type: string
+    sql:
+    {% if sold_at_timeframe._parameter_value == 'day' %}
+    ${sold_date}
+    {% elsif sold_at_timeframe._parameter_value == 'week' %}
+    ${sold_week}
+    {% elsif sold_at_timeframe._parameter_value == 'month' %}
+    ${sold_month}
+    {% else %}
+    ${sold_year}
+    {% endif %}
+    ;;
+  }
+
+
+  parameter: aggregate_value {
+    type: unquoted
+    allowed_value: {
+      label: "By Total Cost"
+      value: "cost"
+    }
+    allowed_value: {
+      label: "By Product Retail Price"
+      value: "product_retail_price"
+    }
+  }
+
+  measure: display_value {
+    label_from_parameter: aggregate_value
+    type: sum
+    sql: ${TABLE}.{{ aggregate_value._parameter_value }} ;;
+  }
+
   dimension_group: sold {
     type: time
     timeframes: [
