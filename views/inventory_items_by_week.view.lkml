@@ -17,7 +17,7 @@ view: inventory_items_by_week {
       1,2,3,4,5,6,7,8,9
 
  ;;
-persist_for: "24 hours"
+# persist_for: "24 hours"
   }
 
   measure: count {

@@ -15,7 +15,7 @@ view: inventory_items_by_month {
       from thelook.inventory_items
       group by
       1,2,3,4,5,6,7,8,9 ;;
-      sql_trigger_value: select count(*) from thelook.inventory_items ;;
+      # sql_trigger_value: select count(*) from thelook.inventory_items ;;
   }
 
   measure: count {
