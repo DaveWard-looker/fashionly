@@ -8,7 +8,7 @@
 # }
 
 constant: connection_name {
-  value: "bigquery_personal_instance"
+  value: "looker_private_demo"
   export: override_required
 }
 
