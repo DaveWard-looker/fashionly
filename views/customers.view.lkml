@@ -97,4 +97,10 @@ view: customers {
     type: count
     drill_fields: [id, last_name, first_name]
   }
+
+  measure: count_of_davids {
+    type: count_distinct
+    sql: ${id} ;;
+    filters: [first_name: "David"]
+  }
 }
