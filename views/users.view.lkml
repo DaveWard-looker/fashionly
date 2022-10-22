@@ -141,20 +141,24 @@ view: users {
   measure: count {
     type: count
     drill_fields: [id, last_name, first_name, events.count, order_items.count]
+    value_format_name: decimal_0
   }
 
   measure: count_of_female_users {
     type: count
     filters: [gender: "Female"]
+    value_format_name: decimal_0
   }
 
   measure: count_of_male_users {
     type: count
     filters: [gender: "Male"]
+    value_format_name: decimal_0
   }
 
   measure: average_Age {
     type: average
     sql: ${age} ;;
+    value_format_name: decimal_1
   }
 }
