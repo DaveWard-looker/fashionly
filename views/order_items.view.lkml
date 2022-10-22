@@ -306,6 +306,7 @@ view: order_items {
   measure: cancellation_rate {
     type: number
     sql: 1.00*${count_of_cancellations}/nullif(${count},0) ;;
+    value_format_name: percent_2
   }
 
   measure: average_shipping_days {

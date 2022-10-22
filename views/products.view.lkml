@@ -28,7 +28,7 @@ view: products {
     }
     link: {
       label: "{{value}} Dashboard"
-      url: "/dashboards/437?Brand%20Name={{value}}"
+      url: "/dashboards/3?Brand%20Name={{value}}"
       icon_url: "https://www.google.com/s2/favicons?domain=looker.com"
     }
     link: {
