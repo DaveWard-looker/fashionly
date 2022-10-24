@@ -240,23 +240,6 @@ explore: +inventory_items {
     }
   }
 
-  aggregate_table: rollup__products_brand__5 {
-    query: {
-      dimensions: [products.brand]
-      measures: [products.count]
-      filters: [
-        # "inventory_items.created_date" was filtered by dashboard. The aggregate table will only optimize against exact match queries.
-        inventory_items.created_date: "this year to second",
-        # "inventory_items.sold_at_timeframe" was filtered by dashboard. The aggregate table will only optimize against exact match queries.
-        inventory_items.sold_at_timeframe: "day"
-      ]
-    }
-
-    materialization: {
-      datagroup_trigger: inventory_items_datagroup
-    }
-  }
-
   aggregate_table: rollup__products_category__6 {
     query: {
       dimensions: [products.category]
