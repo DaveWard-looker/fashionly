@@ -182,6 +182,12 @@ where
     value_format_name: usd
   }
 
+    measure: average_cost {
+      type: average
+      sql: ${cost} ;;
+      value_format_name: usd
+    }
+
   measure: total_product_retail_price {
     type: sum
     sql: ${product_retail_price} ;;
