@@ -7,7 +7,14 @@ include: "/views/**/*"
 
 datagroup: order_items_datagroup {
   sql_trigger: SELECT max(id) FROM order_items ;;
-  max_cache_age: "24 hours"
+}
+
+datagroup: refresh_datagroup {
+  sql_trigger:
+  select max(update_date) from etl.logs
+  where table_name = 'Orders'
+  and created_date = current_date()
+  ;;
 }
 
 datagroup: no_cache {
@@ -34,6 +41,7 @@ explore: order_items {
 
 
 explore: events {
+  persist_with: no_cache
   join: users {
 
     type: left_outer
@@ -113,6 +121,10 @@ explore: orders {
 }
 
 explore: products {
+  access_filter: {
+    field: products.brand
+    user_attribute: brand
+  }
 
   join: distribution_centers {
 
@@ -303,6 +315,26 @@ explore: +inventory_items {
         # "inventory_items.created_date" was filtered by dashboard. The aggregate table will only optimize against exact match queries.
         inventory_items.created_date: "this year to second",
         # "inventory_items.sold_at_timeframe" was filtered by dashboard. The aggregate table will only optimize against exact match queries.
+        inventory_items.sold_at_timeframe: "day"
+      ]
+    }
+
+    materialization: {
+      datagroup_trigger: inventory_items_datagroup
+    }
+  }
+}
+
+
+
+# Place in `fashionly` model
+explore: +inventory_items {
+  aggregate_table: rollup__products_brand {
+    query: {
+      dimensions: [products.brand]
+      measures: [products.count]
+      filters: [
+        inventory_items.created_date: "this year to second",
         inventory_items.sold_at_timeframe: "day"
       ]
     }
