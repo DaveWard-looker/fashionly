@@ -89,6 +89,11 @@ view: products {
     sql: ${TABLE}.department ;;
   }
 
+  measure: count_of_dept {
+    type: count_distinct
+    sql: ${department} ;;
+  }
+
   dimension: distribution_center_id {
     type: string
     # hidden: yes
