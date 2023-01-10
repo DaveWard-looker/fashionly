@@ -193,4 +193,9 @@ where
     sql: ${product_retail_price} ;;
     value_format_name: usd
   }
+
+  measure: count_of_skus {
+    type: count_distinct
+    sql: ${product_sku} ;;
+  }
 }
