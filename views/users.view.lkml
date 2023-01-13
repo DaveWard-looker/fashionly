@@ -156,6 +156,11 @@ view: users {
     value_format_name: decimal_0
   }
 
+  measure: count_of_cites {
+    type: count_distinct
+    sql: ${city} ;;
+  }
+
   measure: average_Age {
     type: average
     sql: ${age} ;;
