@@ -1,4 +1,4 @@
-connection: "@{connection_name}"
+connection: "looker_private_demo"
 include: "/value_formats.explore.lkml"
 include: "/dashboards/inventory_items.dashboard.lookml"
 

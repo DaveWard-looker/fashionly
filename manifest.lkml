@@ -7,11 +7,6 @@
 #   project: "elections"
 # }
 
-constant: connection_name {
-  value: "looker_private_demo"
-  export: override_required
-}
-
 constant: map_api_key {
   value: "laijhefpa7p976d"
 }
@@ -21,4 +16,3 @@ localization_settings: {
   default_locale: en
   localization_level: permissive
 }
- new_lookml_runtime: yes
