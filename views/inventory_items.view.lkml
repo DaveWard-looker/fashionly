@@ -3,23 +3,34 @@ include: "system_fields.view"
 view: inventory_items {
   extends: [system_fields]
   # sql_table_name: `thelook.inventory_items`
-  derived_table: {
-    sql:  SELECT * FROM
- {% if created_week._in_query %}
- ${inventory_items_by_week.SQL_TABLE_NAME} i
- {% elsif created_month._in_query %}
- ${inventory_items_by_month.SQL_TABLE_NAME} i
- {% elsif created_year._in_query %}
- ${inventory_items_by_year.SQL_TABLE_NAME} i
- {% else %}
- thelook.inventory_items i
- {% endif %}
-where
+  sql_table_name:
+{% if created_week._in_query %}
+${inventory_items_by_week.SQL_TABLE_NAME}
+{% elsif created_month._in_query %}
+${inventory_items_by_month.SQL_TABLE_NAME}
+{% elsif created_year._in_query %}
+${inventory_items_by_year.SQL_TABLE_NAME}
+{% else %}
+thelook.inventory_items
+{% endif %}
+  ;;
+#   derived_table: {
+#     sql:  SELECT * FROM
+# {% if created_week._in_query %}
+# ${inventory_items_by_week.SQL_TABLE_NAME} i
+# {% elsif created_month._in_query %}
+# ${inventory_items_by_month.SQL_TABLE_NAME} i
+# {% elsif created_year._in_query %}
+# ${inventory_items_by_year.SQL_TABLE_NAME} i
+# {% else %}
+# thelook.inventory_items i
+# {% endif %}
+# where
 
-{% condition product_category  %} i.product_category {% endcondition %}
+# {% condition product_category  %} i.product_category {% endcondition %}
 
-    ;;
-    }
+#     ;;
+#     }
   drill_fields: [id]
 
   dimension: id {
