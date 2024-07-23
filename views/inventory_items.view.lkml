@@ -2,7 +2,6 @@
 include: "system_fields.view"
 view: inventory_items {
   extends: [system_fields]
-  # sql_table_name: `thelook.inventory_items`
   sql_table_name:
 {% if created_week._in_query %}
 ${inventory_items_by_week.SQL_TABLE_NAME}
