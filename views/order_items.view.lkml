@@ -320,4 +320,10 @@ view: order_items {
     sql: ${hours_picked} ;;
   }
 
+  measure: count_of_users {
+    type: count_distinct
+    sql: ${user_id} ;;
+
+  }
+
 }
