@@ -121,10 +121,10 @@ explore: orders {
 }
 
 explore: products {
-  access_filter: {
-    field: products.brand
-    user_attribute: brand
-  }
+  # access_filter: {
+  #   field: products.brand
+  #   user_attribute: brand
+  # }
 
   join: distribution_centers {
 

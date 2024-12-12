@@ -14,6 +14,8 @@ thelook.inventory_items
 {% endif %}
   ;;
 
+# sql_table_name: thelook.inventory_items ;;
+
   drill_fields: [id]
 
   dimension: id {
@@ -137,11 +139,29 @@ thelook.inventory_items
     }
   }
 
+  parameter: aggregation_type {
+    type: unquoted
+    allowed_value: {
+      label: "By Average"
+      value: "AVG"
+    }
+    allowed_value: {
+      label: "By Sum"
+      value: "SUM"
+    }
+    allowed_value: {
+      label: "By Max"
+      value: "MAX"
+    }
+  }
+
   measure: display_value {
     label_from_parameter: aggregate_value
-    type: sum
-    sql: ${TABLE}.{{ aggregate_value._parameter_value }} ;;
+    type: number
+    sql: {{ aggregation_type._parameter_value }}(${TABLE}.{{ aggregate_value._parameter_value }}) ;;
   }
+
+
 
   dimension_group: sold {
     type: time
