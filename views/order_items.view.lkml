@@ -265,22 +265,28 @@ view: order_items {
   }
 
   measure: total_sale_price {
+    tags: ["Logistics Report"]
     type: sum
     sql: ${sale_price} ;;
     value_format_name: large_number
   }
 
   measure: count_of_returns {
+    tags: ["Logistics Report"]
     type: count
     filters: [status: "Returned"]
   }
 
   measure: count_of_cancellations {
+    tags: ["Logistics Report"]
     type: count
     filters: [status: "Cancelled"]
   }
 
   measure: return_rate {
+    label: "The percentage of orders returned"
+    tags: ["Logistics Report"]
+    synonyms: ["Return Percentage"]
     type: number
     sql: 1.00*${count_of_returns}/nullif(${count},0) ;;
     value_format_name: percent_2
@@ -305,12 +311,14 @@ view: order_items {
   }
 
   measure: cancellation_rate {
+    tags: ["Logistics Report"]
     type: number
     sql: 1.00*${count_of_cancellations}/nullif(${count},0) ;;
     value_format_name: percent_2
   }
 
   measure: average_shipping_days {
+    tags: ["Logistics Report"]
     type: average
     sql: ${days_shipping} ;;
     value_format_name: decimal_2
