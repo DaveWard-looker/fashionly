@@ -6,8 +6,8 @@ view: user_orders_fact {
       max(orders.created_at) as last_order,
       count(distinct orders.created_at) as number_of_orders,
       count(distinct orders.returned_at) as number_of_returns
-      FROM `daveward-ps-dev.thelook.users` users
-      LEFT JOIN `daveward-ps-dev.thelook.order_items` orders
+      FROM `.thelook.users` users
+      LEFT JOIN `thelook.order_items` orders
       on users.id = orders.user_id
       group by 1,2
        ;;

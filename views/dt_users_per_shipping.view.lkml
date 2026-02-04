@@ -2,7 +2,7 @@ view: dt_users_per_shipping {
   derived_table: {
     sql: SELECT
     shipped_at, count(user_id) as count_of_users
-    FROM `daveward-ps-dev.thelook.order_items` o
+    FROM `thelook.order_items` o
     WHERE
     {% condition order_status%} o.status {% endcondition %}
     group by 1

@@ -1,7 +1,7 @@
 include: "system_fields.view"
 view: customers {
   extends: [system_fields]
-  sql_table_name: `daveward-ps-dev.daveward_demodataset.customers`
+  sql_table_name: `daveward_demodataset.customers`
     ;;
   drill_fields: [id]
 
