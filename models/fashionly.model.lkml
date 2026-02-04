@@ -141,31 +141,4 @@ explore: inventory_items_marketing {
   extends: [inventory_items]
   from: inventory_items
   view_name: inventory_items
-  join: customers {
-    sql_on: ${customers.product_id} = ${products.id} ;;
-    type: left_outer
-    relationship: many_to_one
-  }
-}
-
-
-
-
-
-# aggregate awareness code
-
-
-# Place in `fashionly` model
-explore: +events {
-  aggregate_table: rollup__users_age_group__users_customer_name__users_gender {
-    query: {
-      dimensions: [users.age_group, users.customer_name, users.gender]
-      measures: [users.count]
-      timezone: "UTC"
-    }
-
-    materialization: {
-      datagroup_trigger: order_items_datagroup
-    }
-  }
 }
