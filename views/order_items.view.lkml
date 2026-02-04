@@ -19,6 +19,7 @@ view: order_items {
       date,
       day_of_week,
       day_of_week_index,
+      month_num,
       week,
       month,
       quarter,

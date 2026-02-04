@@ -1,7 +1,6 @@
 
 include: "system_fields.view"
 view: inventory_items {
-  extends: [system_fields]
   sql_table_name:
 {% if created_week._in_query %}
 ${inventory_items_by_week.SQL_TABLE_NAME}
@@ -13,6 +12,43 @@ ${inventory_items_by_year.SQL_TABLE_NAME}
 thelook.inventory_items
 {% endif %}
   ;;
+
+
+  parameter: sold_at_timeframe {
+    type: unquoted
+    allowed_value: {
+      label: "By Day"
+      value: "day"
+    }
+    allowed_value: {
+      label: "By Week"
+      value: "week"
+    }
+    allowed_value: {
+      label: "By Month"
+      value: "month"
+    }
+    allowed_value: {
+      label: "By Year"
+      value: "year"
+    }
+  }
+
+  dimension: timeframe {
+    label_from_parameter: sold_at_timeframe
+    type: string
+    sql:
+    {% if sold_at_timeframe._parameter_value == 'day' %}
+    ${sold_date}
+    {% elsif sold_at_timeframe._parameter_value == 'week' %}
+    ${sold_week}
+    {% elsif sold_at_timeframe._parameter_value == 'month' %}
+    ${sold_month}
+    {% else %}
+    ${sold_year}
+    {% endif %}
+    ;;
+  }
 
 # sql_table_name: thelook.inventory_items ;;
 
@@ -90,41 +126,7 @@ thelook.inventory_items
     hidden: yes
   }
 
-  parameter: sold_at_timeframe {
-    type: unquoted
-    allowed_value: {
-      label: "By Day"
-      value: "day"
-    }
-    allowed_value: {
-      label: "By Week"
-      value: "week"
-    }
-    allowed_value: {
-      label: "By Month"
-      value: "month"
-    }
-    allowed_value: {
-      label: "By Year"
-      value: "year"
-    }
-  }
 
-  dimension: timeframe {
-    label_from_parameter: sold_at_timeframe
-    type: string
-    sql:
-    {% if sold_at_timeframe._parameter_value == 'day' %}
-    ${sold_date}
-    {% elsif sold_at_timeframe._parameter_value == 'week' %}
-    ${sold_week}
-    {% elsif sold_at_timeframe._parameter_value == 'month' %}
-    ${sold_month}
-    {% else %}
-    ${sold_year}
-    {% endif %}
-    ;;
-  }
 
 
   parameter: aggregate_value {

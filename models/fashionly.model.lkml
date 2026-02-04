@@ -1,4 +1,4 @@
-connection: "looker_private_demo"
+connection: "default_bigquery_connection"
 include: "/value_formats.explore.lkml"
 include: "/dashboards/inventory_items.dashboard.lookml"
 
@@ -77,7 +77,7 @@ explore: inventory_items {
 
   join: distribution_centers {
     type: left_outer
-    sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
+    sql_on: ${products.product_distribution_center_id} = ${distribution_centers.id} ;;
     relationship: many_to_one
   }
 
@@ -110,7 +110,7 @@ explore: orders {
 
   join: distribution_centers {
     type: left_outer
-    sql_on: ${inventory_items.distribution_center_id} = ${distribution_centers.id} ;;
+    sql_on: ${inventory_items.product_distribution_center_id} = ${distribution_centers.id} ;;
     relationship: many_to_one
   }
   join: user_orders_fact {
@@ -129,7 +129,7 @@ explore: products {
   join: distribution_centers {
 
     type: left_outer
-    sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
+    sql_on: ${products.product_distribution_center_id} = ${distribution_centers.id} ;;
     relationship: many_to_one
   }
 }

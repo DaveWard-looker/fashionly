@@ -13,9 +13,17 @@ view: system_fields {
       day_of_week,
       week,
       month,
-      year
+      year,
+      month_num
     ]
   }
+
+  # dimension: maxMonth {
+  #   type: yesno
+  #   sql: max(${created_month_num}) ;;
+  # }
+
+
 
   dimension: user_id {
     hidden: yes

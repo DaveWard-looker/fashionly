@@ -1,7 +1,6 @@
 view: inventory_items_by_month {
   derived_table: {
     sql: select
-      PRODUCT_ID,
       PRODUCT_CATEGORY,
       PRODUCT_BRAND,
       PRODUCT_DEPARTMENT,
@@ -10,11 +9,12 @@ view: inventory_items_by_month {
       PRODUCT_DISTRIBUTION_CENTER_ID,
       DATE_TRUNC(CREATED_AT,MONTH) AS CREATED_AT,
       DATE_TRUNC(SOLD_AT,MONTH) as SOLD_AT,
+      COUNT(DISTINCT PRODUCT_ID) AS PRODUCT_ID,
       SUM(COST) as COST,
       SUM(PRODUCT_RETAIL_PRICE) as PRODUCT_RETAIL_PRICE
       from thelook.inventory_items
       group by
-      1,2,3,4,5,6,7,8,9 ;;
+      1,2,3,4,5,6,7,8 ;;
     datagroup_trigger: inventory_items_datagroup
 
   }
